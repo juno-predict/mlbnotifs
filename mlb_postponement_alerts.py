@@ -139,6 +139,13 @@ def dispatch(game):
 def check_once():
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     alerted = load_alerted()
+
+    # --- TEMPORARY TEST: remove this block once delivery is confirmed ---
+    if os.environ.get("TEST_ALERT"):
+        ok = notify_telegram("✅ Test alert — MLB postponement bot is wired up correctly.")
+        print(f"TEST_ALERT sent via Telegram: {ok}", file=sys.stderr)
+    # --- end temporary test block ---
+
     new_alerts = 0
     for game in fetch_games(today):
         state = game.get("status", {}).get("detailedState", "")
