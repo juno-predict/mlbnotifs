@@ -1,0 +1,11 @@
+[build]
+builder = "nixpacks"
+
+[deploy]
+# Single check-and-exit run. Railway's cron trigger (set below) invokes this
+# on schedule; the script exits cleanly so the next run is never skipped.
+startCommand = "python mlb_postponement_alerts.py"
+restartPolicyType = "never"
+
+# Every 5 minutes (UTC). This is Railway's minimum cron interval.
+cronSchedule = "*/5 * * * *"
