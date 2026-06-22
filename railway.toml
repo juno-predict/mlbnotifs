@@ -7,5 +7,5 @@ builder = "nixpacks"
 startCommand = "python mlb_postponement_alerts.py"
 restartPolicyType = "never"
 
-# Every 5 minutes (UTC). This is Railway's minimum cron interval.
-cronSchedule = "*/5 * * * *"
+# Every 30 minutes (UTC). 
+cronSchedule = "*/30 * * * *"
